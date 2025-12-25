@@ -83,21 +83,23 @@
     btn.onclick = async () => {
       if (!input.files.length) return;
       const file = input.files[0];
-      const formData = new FormData();
-      formData.append('file', file);
+const reader = new FileReader();
+reader.onload = async () => {
+  const base64 = reader.result.split(',')[1];
+  try {
+    const res = await fetch('https://imageprocess-9zk1.onrender.com/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image_base64: base64 })
+    });
+    const data = await res.json();
+    resultDiv.textContent = JSON.stringify(data, null, 2);
+  } catch (err) {
+    resultDiv.textContent = 'Error: ' + err;
+  }
+};
+reader.readAsDataURL(file);
 
-      resultDiv.textContent = 'Analyzing...';
-
-      try {
-        const res = await fetch('https://imageprocess-9zk1.onrender.com/predict', {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        resultDiv.textContent = JSON.stringify(data, null, 2);
-      } catch (err) {
-        resultDiv.textContent = 'Error: ' + err;
-      }
     };
   </script>
 </body>
