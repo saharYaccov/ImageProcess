@@ -88,6 +88,7 @@
       <tr>
         <th>File Name</th>
         <th>Prediction</th>
+        <th>confidence</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -163,7 +164,7 @@
 
     downloadBtn.onclick = () => {
       if (!predictions.length) return;
-      let csvContent = "data:text/csv;charset=utf-8,File Name,Prediction\n";
+      let csvContent = "data:text/csv;charset=utf-8,File Name,Prediction,confidenceText\n";
       predictions.forEach(p => {
         csvContent += `${p.fileName},${p.prediction}\n`;
       });
