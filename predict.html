@@ -140,7 +140,11 @@
           tableBody.appendChild(tr);
 
           // Save to array for CSV
-          predictions.push({ fileName: file.name, prediction: predictionText });
+          predictions.push({ 
+            fileName: file.name, 
+            prediction: predictionText,
+            confidence: confidenceText
+          });
         } catch (err) {
           resultDiv.textContent = 'Error: ' + err;
         }
