@@ -84,15 +84,15 @@
   <div id="result"></div>
 
   <table id="predictionTable">
-    <thead>
-      <tr>
-        <th>File Name</th>
-        <th>Prediction</th>
-        <th>Confidence</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Prediction</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
   <button id="downloadBtn">Download CSV</button>
 
@@ -139,6 +139,7 @@
           const tr = document.createElement('tr');
           tr.innerHTML = `<td>${file.name}</td><td>${predictionText}</td><td>${confidenceText}</td>`;
           tableBody.appendChild(tr);
+          
 
           // Save to array for CSV
           predictions.push({ 
