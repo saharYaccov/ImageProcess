@@ -48,10 +48,10 @@ model = nn.Sequential(
     nn.ReLU(),
     nn.MaxPool2d(2),
     nn.Flatten(),
-    nn.Dropout(0.6),
+    nn.Dropout(0.5),
     nn.Linear(128*14*14, 128),
-    nn.Sigmoid(),
-    nn.Dropout(0.4),
+    nn.ReLu(),
+    nn.Dropout(0.5),
     nn.Linear(128, 2)  # מספר הקלאסים שלך
 ).to(device)
 
