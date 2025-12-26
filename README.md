@@ -2,8 +2,9 @@
 
 [GitHub Repository](https://github.com/saharYaccov/ImageProcess)  
 
-## **Live Demo:** [Try ImageProcess online](https://saharyaccov.github.io/ImageProcess/)
+🌐 **Live Demo:** [Try ImageProcess online](https://saharyaccov.github.io/ImageProcess/)  
 
+🚀 **Render Dashboard:** [View deployment events](https://dashboard.render.com/web/srv-d56qr4mr433s73eb55d0/events)
 
 ## About
 This project focuses on image classification using a **Convolutional Neural Network (CNN)** implemented in Python.  
