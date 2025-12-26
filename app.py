@@ -30,9 +30,9 @@ class ImageRequest(BaseModel):
 # -------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 # -------------------------------
-# Model Architecture
-# חייב להיות זהה למודל ששמרת
+# Model Definition
 # -------------------------------
 model = nn.Sequential(
     nn.Conv2d(3, 16, kernel_size=3, padding=1),
@@ -44,15 +44,12 @@ model = nn.Sequential(
     nn.Conv2d(32, 64, kernel_size=3, padding=1),
     nn.ReLU(),
     nn.MaxPool2d(2),
-    nn.Conv2d(64, 128, kernel_size=3, padding=1),
-    nn.ReLU(),
-    nn.MaxPool2d(2),
     nn.Flatten(),
     nn.Dropout(0.5),
-    nn.Linear(128*14*14, 128),
-    nn.ReLU(),
+    nn.Linear(64*28*28, 64),  # 224x224 input -> after 3 pools: 28x28
+    nn.Sigmoid(),
     nn.Dropout(0.5),
-    nn.Linear(128, 2)  # מספר הקלאסים שלך
+    nn.Linear(64, 2)
 ).to(device)
 
 # טען את המודל ששמרת
