@@ -20,12 +20,6 @@ The renders were generated via **FastAPI** that I built, using images collected 
 | `predict.html`       | Web form to submit images for prediction |
 | `requirements.txt`   | Required Python packages |
 | `README.md`          | Project documentation (this file) |
-| `data/train/ai_image/`  | AI-generated images for training |
-| `data/train/real_image/`| Real images for training |
-| `data/val/ai_image/`    | AI-generated images for validation |
-| `data/val/real_image/`  | Real images for validation |
-| `data/test/ai_image/`   | AI-generated images for testing |
-| `data/test/real_image/` | Real images for testing |
 
 ## Model Overview
 The model is a **Convolutional Neural Network (CNN)** designed to classify images into 2 categories: AI-generated vs real.  
