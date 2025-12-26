@@ -50,7 +50,7 @@ model = nn.Sequential(
     nn.Flatten(),
     nn.Dropout(0.5),
     nn.Linear(128*14*14, 128),
-    nn.ReLu(),
+    nn.ReLU(),
     nn.Dropout(0.5),
     nn.Linear(128, 2)  # מספר הקלאסים שלך
 ).to(device)
