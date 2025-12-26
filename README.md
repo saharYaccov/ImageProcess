@@ -2,8 +2,7 @@
 
 [GitHub Repository](https://github.com/saharYaccov/ImageProcess)  
 
-👁️‍🗨️ ֿ
-# **Live Demo:** [Try ImageProcess online](https://saharyaccov.github.io/ImageProcess/)
+## **Live Demo:** [Try ImageProcess online](https://saharyaccov.github.io/ImageProcess/)
 
 
 ## About
