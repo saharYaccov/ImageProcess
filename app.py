@@ -34,22 +34,46 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # -------------------------------
 # Model Definition
 # -------------------------------
+import torch.nn as nn
+
 model = nn.Sequential(
-    nn.Conv2d(3, 16, kernel_size=3, padding=1),
+    # -------------------------------
+    # 1st Convolutional Block
+    # -------------------------------
+    nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
-    nn.Conv2d(16, 32, kernel_size=3, padding=1),
+    nn.MaxPool2d(kernel_size=2, stride=2, padding=0),
+
+    # -------------------------------
+    # 2nd Convolutional Block
+    # -------------------------------
+    nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
-    nn.Conv2d(32, 64, kernel_size=3, padding=1),
+    nn.MaxPool2d(kernel_size=2, stride=2, padding=0),
+
+    # -------------------------------
+    # 3rd Convolutional Block
+    # -------------------------------
+    nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
-    nn.Flatten(),
+    nn.MaxPool2d(kernel_size=2, stride=2, padding=0),
+
+    # -------------------------------
+    # 4th Convolutional Block
+    # -------------------------------
+    nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2, padding=0),
+
+    # -------------------------------
+    # Fully Connected Layers
+    # -------------------------------
+    nn.Flatten(start_dim=1),
     nn.Dropout(0.5),
-    nn.Linear(64*28*28, 64),  # 224x224 input -> after 3 pools: 28x28
-    nn.Sigmoid(),
+    nn.Linear(128 * 14 * 14, 128),  # Assuming input 224x224 -> after 4 pools: 14x14
+    nn.ReLU(),
     nn.Dropout(0.5),
-    nn.Linear(64, 2)
+    nn.Linear(128, 2)
 ).to(device)
 
 # טען את המודל ששמרת
