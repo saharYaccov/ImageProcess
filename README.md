@@ -15,7 +15,10 @@ This project focuses on **image classification** using a **Convolutional Neural 
 The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend.  
 The model was trained on images collected from **Kaggle**, with a total dataset size of **10,000+ images**. 📊
 
-![Deep Learning](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F81dmy782i-FrHwcDy8maYnLUpObPsnhJA&s)
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F81dmy782i-FrHwcDy8maYnLUpObPsnhJA&s" 
+     alt="Deep Learning" 
+     style="width: 80%; max-width: 800px; height: auto; display: block; margin: 20px auto;">
+
 *Illustration of deep learning concept*
 
 ---
