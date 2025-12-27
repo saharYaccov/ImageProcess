@@ -27,7 +27,7 @@ def get_config():
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://saharyaccov.github.io"],  # רק הדומיין שלך
+    allow_origins=["*"],  # רק הדומיין שלך
     allow_methods=["*"],
     allow_headers=["*"]
 )
