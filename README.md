@@ -1,4 +1,4 @@
-# ImageProcess - CNN and Deep Learning
+# ImageProcess - CNN and Deep Learning 🖼️🤖
 
 [GitHub Repository](https://github.com/saharYaccov/ImageProcess)  
 
@@ -7,46 +7,108 @@
 🚀 **Render Dashboard:** [View deployment events](https://dashboard.render.com/web/srv-d56qr4mr433s73eb55d0/events)
 
 ## About
-This project focuses on image classification using a **Convolutional Neural Network (CNN)** implemented in Python.  
-The renders were generated via **FastAPI** that I built, using images collected from Kaggle, with a total dataset size of **over 10,000 images**.
+This project focuses on **image classification** using a **Convolutional Neural Network (CNN)** implemented in Python with **PyTorch**.  
+The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend.  
+The model was trained on images collected from **Kaggle**, with a total dataset size of **10,000+ images**. 📊
 
-## Folder Structure
+![Deep Learning](https://upload.wikimedia.org/wikipedia/commons/6/6c/Deep_Learning.png)
+*Illustration of deep learning concept*
+
+---
+
+## Folder Structure 📁
 
 | Folder / File        | Description |
 |---------------------|-------------|
-| `cnn_model.pth`      | Trained model weights |
-| `app.py`             | FastAPI app for rendering and prediction |
-| `index.html`         | Web interface to display results |
-| `predict.html`       | Web form to submit images for prediction |
-| `requirements.txt`   | Required Python packages |
-| `README.md`          | Project documentation (this file) |
+| `cnn_model.pth`      | Trained CNN model weights 🏋️‍♂️ |
+| `app.py`             | FastAPI application for model inference ⚡ |
+| `index.html`         | Main web interface 🌐 |
+| `predict.html`       | Image upload and prediction form 📸 |
+| `requirements.txt`   | Python dependencies 📦 |
+| `README.md`          | Project documentation 📖 |
 
-## Model Overview
-The model is a **Convolutional Neural Network (CNN)** designed to classify images into 2 categories: AI-generated vs real.  
-It is composed of **4 convolutional blocks** followed by fully connected layers, with dropout and batch normalization to improve generalization.  
+---
 
-**Architecture Details:**
-- **Input:** RGB images of size 224x224  
-- **Convolutional Blocks:**  
-  1. Conv2d → BatchNorm → ReLU → MaxPool2d  
-  2. Conv2d → BatchNorm → ReLU → MaxPool2d  
-  3. Conv2d → BatchNorm → ReLU → MaxPool2d  
-  4. Conv2d → BatchNorm → ReLU → MaxPool2d  
-- **Flatten Layer:** Converts 3D feature maps to 1D vector  
-- **Fully Connected Layers:**  
-  - Linear → ReLU/Sigmoid → Dropout  
-  - Linear → 2 output classes (logits)  
+## Model Overview 🧠
+The model is a **Convolutional Neural Network (CNN)** designed to classify images into **two classes**:  
+**AI-generated images** (`ai_image`) vs **Real images** (`real_image`). ✅
+
+- **Test Accuracy:** 84.62% 🎯  
+- **Validation Accuracy:** 90.91% 🎯
+
+The architecture uses **4 convolutional blocks** followed by fully connected layers with **dropout** to reduce overfitting.
+
+![CNN Example](https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png)
+*Typical CNN architecture diagram*
+
+---
+
+## Architecture Details 🏗️
+
+- **Input:** RGB images resized to **224 × 224** 📐
+
+### Convolutional Feature Extractor
+The network consists of **four convolutional blocks**:
+
+1. **Conv Block 1**  
+   - Conv2d (3 → 16, kernel size 3×3, padding 1)  
+   - ReLU  
+   - MaxPool2d (2×2)  
+   ![Conv Block](https://upload.wikimedia.org/wikipedia/commons/2/22/Convolutional_Neural_Network_%28CNN%29.png)
+
+2. **Conv Block 2**  
+   - Conv2d (16 → 32, kernel size 3×3, padding 1)  
+   - ReLU  
+   - MaxPool2d (2×2)
+
+3. **Conv Block 3**  
+   - Conv2d (32 → 64, kernel size 3×3, padding 1)  
+   - ReLU  
+   - MaxPool2d (2×2)
+
+4. **Conv Block 4**  
+   - Conv2d (64 → 128, kernel size 3×3, padding 1)  
+   - ReLU  
+   - MaxPool2d (2×2)
+
+---
+
+### Classification Head
+- **Flatten Layer:** Converts 3D feature maps into 1D vector  
+- **Dropout (0.5)** applied for regularization 🛡️  
+- **Fully Connected Layer:**  
+  - Linear (25088 → 128)  
+  - ReLU  
+  - Dropout (0.5)  
+- **Output Layer:**  
+  - Linear (128 → 2) producing logits for **binary classification**  
+
+**Classes:**  
+- `0` → `ai_image` 🤖  
+- `1` → `real_image` 🏞️
+
+![Classification](https://upload.wikimedia.org/wikipedia/commons/e/e4/Cnn_features_visualization.png)
+*Example of CNN feature maps*
+
+---
+
+## Training Configuration ⚙️
 - **Loss Function:** CrossEntropyLoss  
 - **Optimizer:** Adam  
-- **Number of Epochs:** Typically 5 for demonstration  
+- **Number of Epochs:** ~5  
+- **Hardware:** GPU if available, otherwise CPU 💻
 
-**Additional Notes:**
-- Dropout (0.5) is applied in fully connected layers to reduce overfitting.  
-- Batch normalization stabilizes training across convolutional blocks.  
-- The model runs on GPU if available, otherwise CPU.  
+---
 
-## Running the Model
-To run the FastAPI app and perform image predictions:
+## Additional Notes 📝
+- Dropout reduces overfitting and improves generalization  
+- Moderate architecture chosen to balance capacity and simplicity  
+- Exposed via REST API for **real-time inference** 🌐
+
+---
+
+## Running the Model ▶️
+To run the FastAPI app locally:
 
 ```bash
 python app.py
