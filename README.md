@@ -11,7 +11,7 @@ This project focuses on **image classification** using a **Convolutional Neural 
 The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend.  
 The model was trained on images collected from **Kaggle**, with a total dataset size of **10,000+ images**. 📊
 
-![Deep Learning](https://upload.wikimedia.org/wikipedia/commons/6/6c/Deep_Learning.png)
+![Deep Learning](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/10/90650dnn2.webp)
 *Illustration of deep learning concept*
 
 ---
