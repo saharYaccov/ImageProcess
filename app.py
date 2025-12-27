@@ -1,36 +1,31 @@
-from fastapi import FastAPI, HTTPException, Header
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
-import base64
-from PIL import Image
+import os
 import io
+import base64
 import torch
 import torch.nn as nn
+from fastapi import FastAPI, HTTPException, Header
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from PIL import Image
 from torchvision import transforms
 from dotenv import load_dotenv
-import os
 
-# 1. יצירת האפליקציה בראש הקובץ
+load_dotenv()
+
 app = FastAPI()
-load_dotenv() 
 
-# 2. הוספת ה-CORS מיד בהתחלה - זה התיקון העיקרי ל"אדום" בדפדפן
+# משיכת המפתח ממשתני סביבה - ב-Render תגדיר תחת Env Vars את API_KEY
+API_KEY = os.getenv("API_KEY", "default_secret_if_not_found")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # מאשר לכל הדומיינים (כולל GitHub Pages)
+    allow_origins=["*"], # ליתר ביטחון בשלב הבדיקות, עדיף להחליף לדומיין של הגיטהאב שלך בהמשך
     allow_methods=["*"],
-    allow_headers=["*"], # מאשר שליחת headers כמו x-api-key
+    allow_headers=["*"],
 )
 
-# 3. הגדרות (עדיפות למפתח קבוע אם אין לך כוח להסתבך עם .env ב-Render)
-API_KEY = 'SaharY0011'
-API_URL = 'https://imageprocess-9zk1.onrender.com/predict'
-
-# -------------------------------
-# Model Architecture & Loading
-# -------------------------------
+# הגדרת המודל (ללא שינוי בארכיטקטורה)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
 model = nn.Sequential(
     nn.Conv2d(3, 16, kernel_size=3, padding=1),
     nn.ReLU(),
@@ -52,13 +47,16 @@ model = nn.Sequential(
     nn.Linear(128, 2)
 ).to(device)
 
-# טעינה בטוחה כדי למנוע קריסה של השרת
+# טעינת המשקולות
 try:
-    model.load_state_dict(torch.load("cnn_model.pth", map_location=device))
-    model.eval()
-    print("Model loaded successfully!")
+    if os.path.exists("cnn_model.pth"):
+        model.load_state_dict(torch.load("cnn_model.pth", map_location=device))
+        model.eval()
+        print("✅ Model loaded successfully!")
+    else:
+        print("⚠️ Warning: cnn_model.pth not found.")
 except Exception as e:
-    print(f"ERROR: Could not load model weights: {e}")
+    print(f"❌ Error loading model: {e}")
 
 val_transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -66,24 +64,20 @@ val_transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-# -------------------------------
-# Endpoints
-# -------------------------------
-
 class ImageRequest(BaseModel):
     image_base64: str
 
-@app.get("/config")
-def get_config():
-    return {"api_url": API_URL}
-
 @app.post("/predict")
 async def predict(request: ImageRequest, x_api_key: str = Header(None)):
+    # אימות מפתח בצורה בטוחה
     if x_api_key != API_KEY:
-        raise HTTPException(status_code=403, detail="Forbidden: Invalid API Key")
+        raise HTTPException(status_code=403, detail="Unauthorized")
 
     try:
-        image_data = base64.b64decode(request.image_base64)
+        # ניקוי הסטרינג למקרה שנשלח עם ה-prefix של ה-data:image
+        encoded_data = request.image_base64.split(",")[-1]
+        image_data = base64.b64decode(encoded_data)
+        
         image = Image.open(io.BytesIO(image_data)).convert("RGB")
         x = val_transform(image).unsqueeze(0).to(device)
 
@@ -94,17 +88,14 @@ async def predict(request: ImageRequest, x_api_key: str = Header(None)):
             confidence = float(torch.max(prob))
 
         class_names = ["AI-generated", "Real"]
-        label_name = class_names[label_idx]
-
         return {
-            "label": label_idx,
-            "label_name": label_name,
+            "label_name": class_names[label_idx],
             "confidence": round(confidence, 2),
-            "certainty": "High" if confidence >= 0.7 else "Medium" if confidence >= 0.5 else "Low"
+            "status": "success"
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Invalid image data")
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {"status": "online"}
