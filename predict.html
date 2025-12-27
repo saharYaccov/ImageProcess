@@ -132,7 +132,13 @@
             headers: { 'Content-Type': 'application/json', 'x-api-key': 'SaharY0011' },
             body: JSON.stringify({ image_base64: base64 })
           });
-          const data = await res.json();
+              if (!res.ok) {
+                  const text = await res.text();  // אם זה לא JSON
+                  throw new Error(`HTTP ${res.status}: ${text}`);
+              }
+
+          const data = await res.json();  // אם הכל תקין
+          console.log(data);
           const predictionText = data.label === 1 ? 'Real' : 'AI-generated';
           const confidenceText = data.confidence.toFixed(2);
           resultDiv.textContent = `Prediction: ${predictionText}\nConfidence: ${confidenceText}`;
