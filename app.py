@@ -23,6 +23,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/")
+def home():
+    return {"message": "Image Process API is running", "status": "active"}
 
 # הגדרת המודל (ללא שינוי בארכיטקטורה)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
