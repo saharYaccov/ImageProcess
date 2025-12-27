@@ -7,6 +7,20 @@ import io
 import torch
 import torch.nn as nn
 from torchvision import transforms
+from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # קורא את הקובץ .env
+
+app = FastAPI()
+
+API_KEY = os.getenv("API_KEY")
+API_URL = os.getenv("API_URL")
+
+@app.get("/config")
+def get_config():
+    return {"api_url": API_URL}
 
 # -------------------------------
 # FastAPI + CORS
