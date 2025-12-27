@@ -3,3 +3,5 @@ uvicorn[standard]
 torch
 torchvision
 pillow
+python-dotenv
+pydantic
