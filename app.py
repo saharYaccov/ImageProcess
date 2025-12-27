@@ -89,7 +89,7 @@ val_transform = transforms.Compose([
 API_KEY = "SaharY0011"
 
 @app.post("/predict")
-async def predict(request: ImageRequest, x_api_key: str = Header(None)):
+async def predict(request: ImageRequest : File(...), x_api_key: str = Header(None)):
     # בדיקה אם ה-API Key נכון
     if x_api_key != API_KEY:
         raise HTTPException(status_code=403, detail="Forbidden: Invalid API Key")
