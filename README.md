@@ -12,8 +12,7 @@ The frontend, hosted on GitHub Pages, communicates with the backend to send imag
 This setup ensures a seamless end-to-end pipeline from image upload to AI-generated classification without requiring local execution. 🌐⚡
 ## About
 This project focuses on **image classification** using a **Convolutional Neural Network (CNN)** implemented in Python with **PyTorch**.  
-The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend.  
-The model was trained on images collected from **Kaggle**, with a total dataset size of **10,000+ images**. 📊
+The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend. 📊
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F81dmy782i-FrHwcDy8maYnLUpObPsnhJA&s" 
      alt="Deep Learning" 
