@@ -86,8 +86,8 @@ val_transform = transforms.Compose([
 # -------------------------------
 # Endpoint לחיזוי עם API Key
 # -------------------------------
-API_KEY=SaharY0011
-API_URL=https://imageprocess-9zk1.onrender.com/predict
+API_KEY='SaharY0011'
+API_URL='https://imageprocess-9zk1.onrender.com/predict'
 @app.post("/predict")
 async def predict(request: ImageRequest : File(...), x_api_key: str = Header(None)):
     # בדיקה אם ה-API Key נכון
