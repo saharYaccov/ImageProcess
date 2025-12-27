@@ -131,7 +131,7 @@
             body: JSON.stringify({ image_base64: base64 })
           });
           const data = await res.json();
-          const predictionText = data.label === 0 ? 'Real' : 'AI-generated';
+          const predictionText = data.label === 1 ? 'Real' : 'AI-generated';
           const confidenceText = data.confidence.toFixed(2);
           resultDiv.textContent = `Prediction: ${predictionText}\nConfidence: ${confidenceText}`;
 
