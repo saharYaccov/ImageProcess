@@ -105,6 +105,8 @@
     const tableBody = document.querySelector('#predictionTable tbody');
     const downloadBtn = document.getElementById('downloadBtn');
 
+    let API_KEY = "SaharY0011";  // אפשר גם לשמור רק בשרת
+    let API_URL;
     let predictions = [];
 
     input.onchange = () => {
@@ -125,9 +127,9 @@
         resultDiv.textContent = 'Analyzing...';
 
         try {
-          const res = await fetch('https://imageprocess-9zk1.onrender.com/predict', {
+          const res = await fetch(API_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json','x-api-key': 'SaharY0011'   },
+            headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
             body: JSON.stringify({ image_base64: base64 })
           });
           const data = await res.json();
