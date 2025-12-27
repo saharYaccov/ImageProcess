@@ -11,6 +11,7 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 import os
 
+app = FastAPI()
 load_dotenv()  # קורא את הקובץ .env
 
 
@@ -24,7 +25,6 @@ def get_config():
 # -------------------------------
 # FastAPI + CORS
 # -------------------------------
-app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # רק הדומיין שלך
