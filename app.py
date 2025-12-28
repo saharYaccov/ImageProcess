@@ -30,44 +30,35 @@ def home():
 # הגדרת המודל (ללא שינוי בארכיטקטורה)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 model = nn.Sequential(
     # Block 1
-    nn.Conv2d(3, 16, kernel_size=3, padding=1),
+    nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
+    nn.MaxPool2d(kernel_size=2, stride=2),
 
     # Block 2
-    nn.Conv2d(16, 32, kernel_size=3, padding=1),
+    nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
+    nn.MaxPool2d(kernel_size=2, stride=2),
 
     # Block 3
-    nn.Conv2d(32, 64, kernel_size=3, padding=1),
+    nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
+    nn.MaxPool2d(kernel_size=2, stride=2),
 
     # Block 4
-    nn.Conv2d(64, 128, kernel_size=3, padding=1),
+    nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
     nn.ReLU(),
-    nn.MaxPool2d(2),
-
-    # Block 5
-    nn.Conv2d(128, 256, kernel_size=3, padding=1),
-    nn.ReLU(),
-    nn.MaxPool2d(2),
-
-    # Block 6
-    nn.Conv2d(256, 512, kernel_size=3, padding=1),
-    nn.ReLU(),
-    nn.MaxPool2d(2),
+    nn.MaxPool2d(kernel_size=2, stride=2),
 
     # Classifier
     nn.Flatten(start_dim=1),
     nn.Dropout(0.5),
-    nn.Linear(4608, 512),   # לפי הארכיטקטורה שלך
+    nn.Linear(25088, 128),   # לפי הארכיטקטורה שלך
     nn.ReLU(),
     nn.Dropout(0.5),
-    nn.Linear(512, 2)
+    nn.Linear(128, 2)
 ).to(device)
 
 # טעינת המשקולות
