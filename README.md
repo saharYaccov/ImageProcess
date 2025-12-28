@@ -2,7 +2,11 @@
 
 [GitHub Repository](https://github.com/saharYaccov/ImageProcess)  
 
-## 🌐 **Live Demo:** [Try ImageProcess online](https://saharyaccov.github.io/ImageProcess/)  
+## 🌐 **Live Demo:** 
+
+[Try ImageProcess online - Render (BackEnd) + GitHub Page HTML (Fronted) ](https://saharyaccov.github.io/ImageProcess/)  
+
+[Try ImageProcess online - Hugging Face](https://huggingface.co/spaces/sahar-yaccov/imagePrediction)  
 
 🚀 **Render Dashboard:** [View deployment events](https://dashboard.render.com/web/srv-d56qr4mr433s73eb55d0/events)
 Deployment & Integration 🚀
