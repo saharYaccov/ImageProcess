@@ -44,8 +44,8 @@ The model has been trained and tested on 3,000+ images, achieving high accuracy 
 The model is a **Convolutional Neural Network (CNN)** designed to classify images into **two classes**:  
 **AI-generated images** (`ai_image`) vs **Real images** (`real_image`). ✅
 
-- **Test Accuracy:** 91.94% 🎯  
-- **Validation Accuracy:** 91.21% 🎯
+- **Test Accuracy:** 91.03% 🎯  
+- **Validation Accuracy:** 90.57% 🎯
 
 The architecture uses **4 convolutional blocks** followed by fully connected layers with **dropout** to reduce overfitting.
 
@@ -61,34 +61,50 @@ The architecture uses **4 convolutional blocks** followed by fully connected lay
 ### Convolutional Feature Extractor
 The network consists of **four convolutional blocks**:
 
+
 1. **Conv Block 1**  
    - `Conv2d`: 3 input channels → 16 output channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 2. **Conv Block 2**  
    - `Conv2d`: 16 → 32 channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 3. **Conv Block 3**  
    - `Conv2d`: 32 → 64 channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 4. **Conv Block 4**  
    - `Conv2d`: 64 → 128 channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d`  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
+
+5. **Conv Block 5**  
+   - `Conv2d`: 128 → 256 channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 ### Classifier
-
-- `Flatten` the feature maps starting from dimension 1  
+- `Flatten` layer  
 - `Dropout(p=0.5)`  
-- `Linear`: 25088 → 128 units  
+- `Linear`: 12544 → 256  
 - `ReLU` activation  
 - `Dropout(p=0.5)`  
-- `Linear`: 128 → 2 output classes
+- `Linear`: 256 → 2 (output classes: AI-generated / Real)  
+
+**Training:**  
+- Number of epochs: **20**  
+- Loss: steadily decreasing during training  
+- Validation Accuracy: ~90.57%  
+- Test Accuracy: ~91.03%
 
 **Classes:**  
 - `0` → `ai_image` 🤖  
