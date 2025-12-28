@@ -44,8 +44,8 @@ The model has been trained and tested on 3,000+ images, achieving high accuracy 
 The model is a **Convolutional Neural Network (CNN)** designed to classify images into **two classes**:  
 **AI-generated images** (`ai_image`) vs **Real images** (`real_image`). ✅
 
-- **Test Accuracy:** 84.62% 🎯  
-- **Validation Accuracy:** 90.91% 🎯
+- **Test Accuracy:** 91.94% 🎯  
+- **Validation Accuracy:** 91.21% 🎯
 
 The architecture uses **4 convolutional blocks** followed by fully connected layers with **dropout** to reduce overfitting.
 
@@ -62,36 +62,33 @@ The architecture uses **4 convolutional blocks** followed by fully connected lay
 The network consists of **four convolutional blocks**:
 
 1. **Conv Block 1**  
-   - Conv2d (3 → 16, kernel size 3×3, padding 1)  
-   - ReLU  
-   - MaxPool2d (2×2)  
+   - `Conv2d`: 3 input channels → 16 output channels, kernel size 3×3, stride 1, padding 1  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
 
 2. **Conv Block 2**  
-   - Conv2d (16 → 32, kernel size 3×3, padding 1)  
-   - ReLU  
-   - MaxPool2d (2×2)
+   - `Conv2d`: 16 → 32 channels, kernel size 3×3, stride 1, padding 1  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
 
 3. **Conv Block 3**  
-   - Conv2d (32 → 64, kernel size 3×3, padding 1)  
-   - ReLU  
-   - MaxPool2d (2×2)
+   - `Conv2d`: 32 → 64 channels, kernel size 3×3, stride 1, padding 1  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
 
 4. **Conv Block 4**  
-   - Conv2d (64 → 128, kernel size 3×3, padding 1)  
-   - ReLU  
-   - MaxPool2d (2×2)
+   - `Conv2d`: 64 → 128 channels, kernel size 3×3, stride 1, padding 1  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
 
----
+### Classifier
 
-### Classification Head
-- **Flatten Layer:** Converts 3D feature maps into 1D vector  
-- **Dropout (0.5)** applied for regularization 🛡️  
-- **Fully Connected Layer:**  
-  - Linear (25088 → 128)  
-  - ReLU  
-  - Dropout (0.5)  
-- **Output Layer:**  
-  - Linear (128 → 2) producing logits for **binary classification**  
+- `Flatten` the feature maps starting from dimension 1  
+- `Dropout(p=0.5)`  
+- `Linear`: 25088 → 128 units  
+- `ReLU` activation  
+- `Dropout(p=0.5)`  
+- `Linear`: 128 → 2 output classes
 
 **Classes:**  
 - `0` → `ai_image` 🤖  
