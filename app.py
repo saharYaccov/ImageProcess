@@ -102,6 +102,11 @@ async def predict(request: ImageRequest, x_api_key: str = Header(None)):
             confidence = float(torch.max(prob))
 
         class_names = ["AI-generated", "Real"]
+        print({
+            "label_name": class_names[label_idx],
+            "confidence": round(confidence, 2),
+            "status": "success"
+        })
         return {
             "label_name": class_names[label_idx],
             "confidence": round(confidence, 2),
