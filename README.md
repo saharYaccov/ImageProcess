@@ -14,10 +14,11 @@ Deployment & Integration 🚀
 The project is deployed on Render, where the FastAPI backend handles GET and POST requests for image predictions.
 The frontend, hosted on GitHub Pages, communicates with the backend to send images for prediction and display the results in real-time.
 This setup ensures a seamless end-to-end pipeline from image upload to AI-generated classification without requiring local execution. 🌐⚡
+
 ## About
 This project focuses on **image classification** using a **Convolutional Neural Network (CNN)** implemented in Python with **PyTorch**.  
 The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend. 
-The model has been trained and tested on 40,000+ images, achieving high accuracy and reliable predictions. 📊
+The model has been trained and tested on 40,000+ {⏱️ Total Time Running : 48'  - 55'  Min } images, achieving high accuracy and reliable predictions. 📊
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F81dmy782i-FrHwcDy8maYnLUpObPsnhJA&s" 
      alt="Deep Learning" 
