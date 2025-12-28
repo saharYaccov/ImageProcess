@@ -4,7 +4,7 @@
 
 ## 🌐 **Live Demo:** 
 
-[Try ImageProcess online - Render (BackEnd) + GitHub Page HTML (Fronted) ](https://saharyaccov.github.io/ImageProcess/)  
+[Try ImageProcess Online – Frontend (GitHub Pages, html) + Backend (Render)](https://saharyaccov.github.io/ImageProcess/)
 
 [Try ImageProcess online - Hugging Face](https://huggingface.co/spaces/sahar-yaccov/imagePrediction)  
 
