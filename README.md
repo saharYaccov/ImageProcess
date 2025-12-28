@@ -6,7 +6,7 @@
 
 [Try ImageProcess Online – Frontend (GitHub Pages, html) + Backend (Render)](https://saharyaccov.github.io/ImageProcess/)
 
-[Try ImageProcess online - Hugging Face](https://huggingface.co/spaces/sahar-yaccov/imagePrediction)  
+[Try ImageProcess Online - Hugging Face](https://huggingface.co/spaces/sahar-yaccov/imagePrediction)  
 
 🚀 **Render Dashboard:** [View deployment events](https://dashboard.render.com/web/srv-d56qr4mr433s73eb55d0/events)
 Deployment & Integration 🚀
