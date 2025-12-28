@@ -52,12 +52,17 @@ model = nn.Sequential(
     nn.ReLU(),
     nn.MaxPool2d(kernel_size=2, stride=2),
 
+    nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
+    nn.BatchNorm2d(256),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+
     nn.Flatten(start_dim=1, end_dim=-1),
     nn.Dropout(p=0.5),
-    nn.Linear(in_features=25088, out_features=128),
+    nn.Linear(in_features=12544, out_features=256),
     nn.ReLU(),
     nn.Dropout(p=0.5),
-    nn.Linear(in_features=128, out_features=2)
+    nn.Linear(in_features=256, out_features=2)
 ).to(device)
 
 # טעינת המשקולות
@@ -102,9 +107,9 @@ async def predict(request: ImageRequest, x_api_key: str = Header(None)):
 
         class_names = ["AI-generated", "Real"]
         print({
-            "label_name": class_names[label_idx],
-            "confidence": round(confidence, 2),
-            "status": "success"
+            "🏷️ label_name": class_names[label_idx],
+            "📊 confidence": round(confidence, 2),
+            "✅ status": "success"
         })
         return {
             "label_name": class_names[label_idx],
