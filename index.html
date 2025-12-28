@@ -123,6 +123,24 @@
       can achieve high accuracy on image recognition tasks and adapt to diverse datasets.
     </p>
   </section>
+  <section>
+  <h3>Model Details</h3>
+  <ul>
+    <li><strong>Architecture:</strong> 5 Convolutional Blocks + Classifier (Fully Connected Layers)</li>
+    <li><strong>Conv Block 1:</strong> Conv2d(3→16), BatchNorm2d, ReLU, MaxPool2d(2×2)</li>
+    <li><strong>Conv Block 2:</strong> Conv2d(16→32), BatchNorm2d, ReLU, MaxPool2d(2×2)</li>
+    <li><strong>Conv Block 3:</strong> Conv2d(32→64), BatchNorm2d, ReLU, MaxPool2d(2×2)</li>
+    <li><strong>Conv Block 4:</strong> Conv2d(64→128), BatchNorm2d, ReLU, MaxPool2d(2×2)</li>
+    <li><strong>Conv Block 5:</strong> Conv2d(128→256), BatchNorm2d, ReLU, MaxPool2d(2×2)</li>
+    <li><strong>Classifier:</strong> Flatten → Dropout(0.5) → Linear(12544→256) → ReLU → Dropout(0.5) → Linear(256→2)</li>
+    <li><strong>Number of Epochs:</strong> 20</li>
+    <li><strong>Total Dataset:</strong> 40,000+ images</li>
+    <li><strong>Input Image Size:</strong> 224×224 RGB</li>
+    <li><strong>Test Accuracy:</strong> ~91%</li>
+    <li><strong>Validation Accuracy:</strong> ~90.57%</li>
+    <li><strong>Training Time:</strong> 48–55 minutes</li>
+  </ul>
+</section>
 
   <footer>
     &copy; 2025 Image Prediction Project. All rights reserved.
