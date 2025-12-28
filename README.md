@@ -17,7 +17,7 @@ This setup ensures a seamless end-to-end pipeline from image upload to AI-genera
 ## About
 This project focuses on **image classification** using a **Convolutional Neural Network (CNN)** implemented in Python with **PyTorch**.  
 The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend. 
-The model has been trained and tested on 3,000+ images, achieving high accuracy and reliable predictions. 📊
+The model has been trained and tested on 40,000+ images, achieving high accuracy and reliable predictions. 📊
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F81dmy782i-FrHwcDy8maYnLUpObPsnhJA&s" 
      alt="Deep Learning" 
