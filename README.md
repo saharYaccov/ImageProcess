@@ -81,8 +81,6 @@ The network consists of **four convolutional blocks**:
 
 ---
 
-## Convolutional Blocks
-
 1. **Conv Block 1**  
    - `Conv2d`: 3 → 16 channels, kernel size 3×3, stride 1, padding 1  
    - `BatchNorm2d(16)`  
@@ -132,24 +130,33 @@ The network consists of **four convolutional blocks**:
 ---
 
 ## Training Details
-- Number of epochs: **12**  
+- Number of epochs: **18**  
 - Loss progression:
-  - Epoch 1: 0.7072  
-  - Epoch 2: 0.6747  
-  - Epoch 3: 0.5999  
-  - Epoch 4: 0.5640  
-  - Epoch 5: 0.5517  
-  - Epoch 6: 0.5251  
-  - Epoch 7: 0.5480  
-  - Epoch 8: 0.4940  
-  - Epoch 9: 0.4444  
-  - Epoch 10: 0.4360  
-  - Epoch 11: 0.3967  
-  - Epoch 12: 0.4200  
-- Test Accuracy: **66.67%**  
+  - Epoch 1: 0.6448  
+  - Epoch 2: 0.5409  
+  - Epoch 3: 0.5030  
+  - Epoch 4: 0.4765  
+  - Epoch 5: 0.4582  
+  - Epoch 6: 0.4202  
+  - Epoch 7: 0.4091  
+  - Epoch 8: 0.3731  
+  - Epoch 9: 0.3438  
+  - Epoch 10: 0.3149  
+  - Epoch 11: 0.3038  
+  - Epoch 12: 0.2823  
+  - Epoch 13: 0.2514  
+  - Epoch 14: 0.2298  
+  - Epoch 15: 0.2136  
+  - Epoch 16: 0.1895  
+  - Epoch 17: 0.1834  
+  - Epoch 18: 0.1573  
+- Test Accuracy: **85.27%**  
+- Validation Accuracy: **85.35%**  
+- Dataset Size: 5600 training images, 1290 test images (~5000+ total)  
+- Input Image Size: 224×224 RGB  
 - Training device: Apple Silicon GPU (MPS)  
-- CPU threads used: 10  
-
+- CPU threads used: 10
+- 
 **Classes:**  
 - `0` → `ai_image` 🤖  
 - `1` → `real_image` 🏞️
