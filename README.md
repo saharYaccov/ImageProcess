@@ -45,8 +45,8 @@ The model has been trained and tested on 1,500+ {⏱️ Total Time Running : 10'
 The model is a **Convolutional Neural Network (CNN)** designed to classify images into **two classes**:  
 **AI-generated images** (`ai_image`) vs **Real images** (`real_image`). ✅
 
-- **Test Accuracy:** ~ 80% 🎯  
-- **Validation Accuracy:** ~ 85% 🎯
+- **Test Accuracy:** ~ 70% 🎯  
+- **Validation Accuracy:** ~ 70% 🎯
 
 The architecture uses **4 convolutional blocks** followed by fully connected layers with **dropout** to reduce overfitting.
 
@@ -63,17 +63,28 @@ The architecture uses **4 convolutional blocks** followed by fully connected lay
 The network consists of **four convolutional blocks**:
 
 
+# CNN Model: AI vs Real Image Classifier
+
 ## Architecture Overview
 - **Architecture:** 4 Convolutional Blocks + Classifier (Fully Connected Layers)  
 - **Input Image Size:** 224×224 RGB  
-- **Dataset Size (example run):** 1,500 images  
+- **Dataset Size (example run):** 500+ images  
+
+---
+
+## Convolutional Blocks
+
+## Architecture Overview
+- **Architecture:** 6 Convolutional Blocks + Classifier (Fully Connected Layers)  
+- **Input Image Size:** 224×224 RGB  
+- **Dataset Size:** 420 training images, 90 test images  
 
 ---
 
 ## Convolutional Blocks
 
 1. **Conv Block 1**  
-   - `Conv2d`: 3 input channels → 16 output channels, kernel size 3×3, stride 1, padding 1  
+   - `Conv2d`: 3 → 16 channels, kernel size 3×3, stride 1, padding 1  
    - `BatchNorm2d(16)`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
@@ -96,24 +107,48 @@ The network consists of **four convolutional blocks**:
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
+5. **Conv Block 5**  
+   - `Conv2d`: 128 → 256 channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d(256)`  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
+
+6. **Conv Block 6**  
+   - `Conv2d`: 256 → 512 channels, kernel size 3×3, stride 1, padding 1  
+   - `BatchNorm2d(512)`  
+   - `ReLU` activation  
+   - `MaxPool2d`: 2×2, stride 2  
+
 ---
 
 ## Classifier
 - `Flatten(start_dim=1)`  
 - `Dropout(p=0.5)`  
-- `Linear`: 25088 → 128  
+- `Linear`: 4608 → 512  
 - `ReLU` activation  
 - `Dropout(p=0.5)`  
-- `Linear`: 128 → 2 (output classes: AI-generated / Real)  
+- `Linear`: 512 → 2 (output classes: AI-generated / Real)  
 
 ---
 
 ## Training Details
-- Number of epochs: **30**  
-- Training time: ~10–15 minutes  
-- Loss: steadily decreasing during training  
-- Validation Accuracy: ~84–86% (depending on run)  
-- Test Accuracy: ~78–81% (depending on run)
+- Number of epochs: **12**  
+- Loss progression:
+  - Epoch 1: 0.7072  
+  - Epoch 2: 0.6747  
+  - Epoch 3: 0.5999  
+  - Epoch 4: 0.5640  
+  - Epoch 5: 0.5517  
+  - Epoch 6: 0.5251  
+  - Epoch 7: 0.5480  
+  - Epoch 8: 0.4940  
+  - Epoch 9: 0.4444  
+  - Epoch 10: 0.4360  
+  - Epoch 11: 0.3967  
+  - Epoch 12: 0.4200  
+- Test Accuracy: **66.67%**  
+- Training device: Apple Silicon GPU (MPS)  
+- CPU threads used: 10  
 
 **Classes:**  
 - `0` → `ai_image` 🤖  
