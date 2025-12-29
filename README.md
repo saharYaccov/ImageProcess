@@ -18,7 +18,7 @@ This setup ensures a seamless end-to-end pipeline from image upload to AI-genera
 ## About
 This project focuses on **image classification** using a **Convolutional Neural Network (CNN)** implemented in Python with **PyTorch**.  
 The system provides **end-to-end inference** through a **FastAPI** backend and a web-based frontend. 
-The model has been trained and tested on 40,000+ {⏱️ Total Time Running : 48'  - 55'  Min } images, achieving high accuracy and reliable predictions. 📊
+The model has been trained and tested on 1,500+ {⏱️ Total Time Running : 10'  - 15'  Min } images, achieving high accuracy and reliable predictions. 📊
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F81dmy782i-FrHwcDy8maYnLUpObPsnhJA&s" 
      alt="Deep Learning" 
@@ -45,8 +45,8 @@ The model has been trained and tested on 40,000+ {⏱️ Total Time Running : 48
 The model is a **Convolutional Neural Network (CNN)** designed to classify images into **two classes**:  
 **AI-generated images** (`ai_image`) vs **Real images** (`real_image`). ✅
 
-- **Test Accuracy:** 91.03% 🎯  
-- **Validation Accuracy:** 90.57% 🎯
+- **Test Accuracy:** ~ 80% 🎯  
+- **Validation Accuracy:** ~ 85% 🎯
 
 The architecture uses **4 convolutional blocks** followed by fully connected layers with **dropout** to reduce overfitting.
 
@@ -63,49 +63,57 @@ The architecture uses **4 convolutional blocks** followed by fully connected lay
 The network consists of **four convolutional blocks**:
 
 
+## Architecture Overview
+- **Architecture:** 4 Convolutional Blocks + Classifier (Fully Connected Layers)  
+- **Input Image Size:** 224×224 RGB  
+- **Dataset Size (example run):** 1,500 images  
+
+---
+
+## Convolutional Blocks
+
 1. **Conv Block 1**  
    - `Conv2d`: 3 input channels → 16 output channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d`  
+   - `BatchNorm2d(16)`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 2. **Conv Block 2**  
    - `Conv2d`: 16 → 32 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d`  
+   - `BatchNorm2d(32)`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 3. **Conv Block 3**  
    - `Conv2d`: 32 → 64 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d`  
+   - `BatchNorm2d(64)`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
 4. **Conv Block 4**  
    - `Conv2d`: 64 → 128 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d`  
+   - `BatchNorm2d(128)`  
    - `ReLU` activation  
    - `MaxPool2d`: 2×2, stride 2  
 
-5. **Conv Block 5**  
-   - `Conv2d`: 128 → 256 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+---
 
-### Classifier
-- `Flatten` layer  
+## Classifier
+- `Flatten(start_dim=1)`  
 - `Dropout(p=0.5)`  
-- `Linear`: 12544 → 256  
+- `Linear`: 25088 → 128  
 - `ReLU` activation  
 - `Dropout(p=0.5)`  
-- `Linear`: 256 → 2 (output classes: AI-generated / Real)  
+- `Linear`: 128 → 2 (output classes: AI-generated / Real)  
 
-**Training:**  
-- Number of epochs: **20**  
+---
+
+## Training Details
+- Number of epochs: **30**  
+- Training time: ~10–15 minutes  
 - Loss: steadily decreasing during training  
-- Validation Accuracy: ~90.57%  
-- Test Accuracy: ~91.03%
+- Validation Accuracy: ~84–86% (depending on run)  
+- Test Accuracy: ~78–81% (depending on run)
 
 **Classes:**  
 - `0` → `ai_image` 🤖  
