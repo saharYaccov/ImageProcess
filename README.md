@@ -45,8 +45,8 @@ The model has been trained and tested on 1,500+ {⏱️ Total Time Running : 10'
 The model is a **Convolutional Neural Network (CNN)** designed to classify images into **two classes**:  
 **AI-generated images** (`ai_image`) vs **Real images** (`real_image`). ✅
 
-- **Test Accuracy:** ~ 70% 🎯  
-- **Validation Accuracy:** ~ 70% 🎯
+- **Test Accuracy:** ~ 75% 🎯  
+- **Validation Accuracy:** ~ 74% 🎯
 
 The architecture uses **4 convolutional blocks** followed by fully connected layers with **dropout** to reduce overfitting.
 
@@ -81,82 +81,80 @@ The network consists of **four convolutional blocks**:
 
 ---
 
-1. **Conv Block 1**  
-   - `Conv2d`: 3 → 16 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d(16)`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+### Conv Block 1
+- **Conv2d**: 3 → 16 channels  
+  - Kernel size: 3×3  
+  - Stride: 1  
+  - Padding: 1  
+- **BatchNorm2d(16)**
+- **ReLU** activation
+- **MaxPool2d**: 2×2, stride 2
 
-2. **Conv Block 2**  
-   - `Conv2d`: 16 → 32 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d(32)`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+---
 
-3. **Conv Block 3**  
-   - `Conv2d`: 32 → 64 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d(64)`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+### Conv Block 2
+- **Conv2d**: 16 → 32 channels  
+  - Kernel size: 3×3  
+  - Stride: 1  
+  - Padding: 1  
+- **BatchNorm2d(32)**
+- **ReLU** activation
+- **MaxPool2d**: 2×2, stride 2
 
-4. **Conv Block 4**  
-   - `Conv2d`: 64 → 128 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d(128)`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+---
 
-5. **Conv Block 5**  
-   - `Conv2d`: 128 → 256 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d(256)`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+### Conv Block 3
+- **Conv2d**: 32 → 64 channels  
+  - Kernel size: 3×3  
+  - Stride: 1  
+  - Padding: 1  
+- **BatchNorm2d(64)**
+- **ReLU** activation
+- **MaxPool2d**: 2×2, stride 2
 
-6. **Conv Block 6**  
-   - `Conv2d`: 256 → 512 channels, kernel size 3×3, stride 1, padding 1  
-   - `BatchNorm2d(512)`  
-   - `ReLU` activation  
-   - `MaxPool2d`: 2×2, stride 2  
+---
+
+### Conv Block 4
+- **Conv2d**: 64 → 128 channels  
+  - Kernel size: 3×3  
+  - Stride: 1  
+  - Padding: 1  
+- **BatchNorm2d(128)**
+- **ReLU** activation
+- **MaxPool2d**: 2×2, stride 2
+
+---
+
+### Conv Block 5
+- **Conv2d**: 128 → 256 channels  
+  - Kernel size: 3×3  
+  - Stride: 1  
+  - Padding: 1  
+- **BatchNorm2d(256)**
+- **ReLU** activation
+- **MaxPool2d**: 2×2, stride 2
+
+---
+
+### Conv Block 6
+- **Conv2d**: 256 → 512 channels  
+  - Kernel size: 3×3  
+  - Stride: 1  
+  - Padding: 1  
+- **BatchNorm2d(512)**
+- **ReLU** activation
+- **MaxPool2d**: 2×2, stride 2
 
 ---
 
 ## Classifier
-- `Flatten(start_dim=1)`  
-- `Dropout(p=0.5)`  
-- `Linear`: 4608 → 512  
-- `ReLU` activation  
-- `Dropout(p=0.5)`  
-- `Linear`: 512 → 2 (output classes: AI-generated / Real)  
+- **Flatten** (`start_dim=1`)
+- **Dropout**: p = 0.5
+- **Linear**: 4608 → 512
+- **ReLU** activation
+- **Dropout**: p = 0.5
+- **Linear**: 512 → 2
 
----
-
-## Training Details
-- Number of epochs: **18**  
-- Loss progression:
-  - Epoch 1: 0.6448  
-  - Epoch 2: 0.5409  
-  - Epoch 3: 0.5030  
-  - Epoch 4: 0.4765  
-  - Epoch 5: 0.4582  
-  - Epoch 6: 0.4202  
-  - Epoch 7: 0.4091  
-  - Epoch 8: 0.3731  
-  - Epoch 9: 0.3438  
-  - Epoch 10: 0.3149  
-  - Epoch 11: 0.3038  
-  - Epoch 12: 0.2823  
-  - Epoch 13: 0.2514  
-  - Epoch 14: 0.2298  
-  - Epoch 15: 0.2136  
-  - Epoch 16: 0.1895  
-  - Epoch 17: 0.1834  
-  - Epoch 18: 0.1573  
-- Test Accuracy: **85.27%**  
-- Validation Accuracy: **85.35%**  
-- Dataset Size: 5600 training images, 1290 test images (~5000+ total)  
-- Input Image Size: 224×224 RGB  
-- Training device: Apple Silicon GPU (MPS)  
-- CPU threads used: 10
-- 
 **Classes:**  
 - `0` → `ai_image` 🤖  
 - `1` → `real_image` 🏞️
