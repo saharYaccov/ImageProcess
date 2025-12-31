@@ -31,7 +31,7 @@ def home():
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-model = nn.Sequential(
+model = = nn.Sequential(
     nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1),
     nn.BatchNorm2d(16),
     nn.ReLU(),
@@ -63,10 +63,10 @@ model = nn.Sequential(
     nn.MaxPool2d(kernel_size=2, stride=2),
 
     nn.Flatten(start_dim=1),
-    nn.Dropout(0.5),
-    nn.Linear(4608, 512),
+    nn.Dropout(p=0.5),
+    nn.Linear(12800, 512),
     nn.ReLU(),
-    nn.Dropout(0.5),
+    nn.Dropout(p=0.5),
     nn.Linear(512, 2)
 ).to(device)
 # טעינת המשקולות
