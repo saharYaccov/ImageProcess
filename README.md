@@ -81,69 +81,91 @@ The network consists of **four convolutional blocks**:
 
 ---
 
-### Conv Block 1
-- **Conv2d**: 3 → 16 channels  
-  - Kernel size: 3×3  
-  - Stride: 1  
-  - Padding: 1  
-- **BatchNorm2d(16)**
-- **ReLU** activation
-- **MaxPool2d**: 2×2, stride 2
+## Dataset
+- **Training images:** 4,200
+- **Test images:** 900
+- **Total images:** ~5,100
+- **Classes:** AI-generated / Real
+- **Input size:** 224×224 RGB
 
 ---
+
+## Model Architecture
+
+### Conv Block 1
+- Conv2d: 3 → 16, kernel 3×3, stride 1, padding 1
+- BatchNorm2d(16)
+- ReLU
+- MaxPool2d: 2×2
 
 ### Conv Block 2
-- **Conv2d**: 16 → 32 channels  
-  - Kernel size: 3×3  
-  - Stride: 1  
-  - Padding: 1  
-- **BatchNorm2d(32)**
-- **ReLU** activation
-- **MaxPool2d**: 2×2, stride 2
-
----
+- Conv2d: 16 → 32
+- BatchNorm2d(32)
+- ReLU
+- MaxPool2d: 2×2
 
 ### Conv Block 3
-- **Conv2d**: 32 → 64 channels  
-  - Kernel size: 3×3  
-  - Stride: 1  
-  - Padding: 1  
-- **BatchNorm2d(64)**
-- **ReLU** activation
-- **MaxPool2d**: 2×2, stride 2
-
----
+- Conv2d: 32 → 64
+- BatchNorm2d(64)
+- ReLU
+- MaxPool2d: 2×2
 
 ### Conv Block 4
-- **Conv2d**: 64 → 128 channels  
-  - Kernel size: 3×3  
-  - Stride: 1  
-  - Padding: 1  
-- **BatchNorm2d(128)**
-- **ReLU** activation
-- **MaxPool2d**: 2×2, stride 2
-
----
+- Conv2d: 64 → 128
+- BatchNorm2d(128)
+- ReLU
+- MaxPool2d: 2×2
 
 ### Conv Block 5
-- **Conv2d**: 128 → 256 channels  
-  - Kernel size: 3×3  
-  - Stride: 1  
-  - Padding: 1  
-- **BatchNorm2d(256)**
-- **ReLU** activation
-- **MaxPool2d**: 2×2, stride 2
+- Conv2d: 128 → 256
+- BatchNorm2d(256)
+- ReLU
+- MaxPool2d: 2×2
+
+### Conv Block 6
+- Conv2d: 256 → 512
+- BatchNorm2d(512)
+- ReLU
+- MaxPool2d: 2×2
 
 ---
 
-### Conv Block 6
-- **Conv2d**: 256 → 512 channels  
-  - Kernel size: 3×3  
-  - Stride: 1  
-  - Padding: 1  
-- **BatchNorm2d(512)**
-- **ReLU** activation
-- **MaxPool2d**: 2×2, stride 2
+## Classifier
+- Flatten
+- Dropout (p=0.5)
+- Linear: 4608 → 512
+- ReLU
+- Dropout (p=0.5)
+- Linear: 512 → 2
+
+---
+
+## Training Details
+- **Epochs:** 8
+- **Loss function:** CrossEntropyLoss
+- **Optimizer:** Adam
+- **Device:** Apple Silicon GPU (MPS)
+- **CPU threads:** 10
+
+---
+
+## Training Loss
+| Epoch | Loss |
+|------:|------:|
+| 1 | 0.6577 |
+| 2 | 0.5887 |
+| 3 | 0.5478 |
+| 4 | 0.5230 |
+| 5 | 0.5014 |
+| 6 | 0.4775 |
+| 7 | 0.4557 |
+| 8 | 0.4376 |
+
+---
+
+## Performance
+- **Test Accuracy:** **78.44%**
+
 
 ---
 
