@@ -82,52 +82,26 @@ The network consists of **four convolutional blocks**:
 ---
 
 ## Dataset
-- **Training images:** 4,200
-- **Test images:** 900
-- **Total images:** ~5,100
-- **Classes:** AI-generated / Real
-- **Input size:** 224×224 RGB
+- **Training images:** 4,200  
+- **Test images:** 900  
+- **Total images:** ~5,100  
+- **Classes:** AI-generated / Real  
+- **Input size:** 250×250 RGB  
 
 ---
 
-## Model Architecture
+## Model Architecture 🧠
 
-### Conv Block 1
-- Conv2d: 3 → 16, kernel 3×3, stride 1, padding 1
-- BatchNorm2d(16)
-- ReLU
-- MaxPool2d: 2×2
+### CNN: 6 Convolutional Blocks + Classifier
 
-### Conv Block 2
-- Conv2d: 16 → 32
-- BatchNorm2d(32)
-- ReLU
-- MaxPool2d: 2×2
-
-### Conv Block 3
-- Conv2d: 32 → 64
-- BatchNorm2d(64)
-- ReLU
-- MaxPool2d: 2×2
-
-### Conv Block 4
-- Conv2d: 64 → 128
-- BatchNorm2d(128)
-- ReLU
-- MaxPool2d: 2×2
-
-### Conv Block 5
-- Conv2d: 128 → 256
-- BatchNorm2d(256)
-- ReLU
-- MaxPool2d: 2×2
-
-### Conv Block 6
-- Conv2d: 256 → 512
-- BatchNorm2d(512)
-- ReLU
-- MaxPool2d: 2×2
-
+| Block | Layers |
+|-------|--------|
+| Conv Block 1 | Conv2d(3 → 16, 3×3) → BatchNorm2d(16) → ReLU → MaxPool2d(2×2) |
+| Conv Block 2 | Conv2d(16 → 32, 3×3) → BatchNorm2d(32) → ReLU → MaxPool2d(2×2) |
+| Conv Block 3 | Conv2d(32 → 64, 3×3) → BatchNorm2d(64) → ReLU → MaxPool2d(2×2) |
+| Conv Block 4 | Conv2d(64 → 128, 3×3) → BatchNorm2d(128) → ReLU → MaxPool2d(2×2) |
+| Conv Block 5 | Conv2d(128 → 256, 3×3) → BatchNorm2d(256) → ReLU → MaxPool2d(2×2) |
+| Conv Block 6 | Conv2d(256 → 512, 3×3) → BatchNorm2d(512) → ReLU → MaxPool2d(2×2) |
 ---
 
 ## Classifier
@@ -141,17 +115,18 @@ The network consists of **four convolutional blocks**:
 ---
 
 ## Training Details
-- **Epochs:** 8
-- **Loss function:** CrossEntropyLoss
-- **Optimizer:** Adam
-- **Device:** Apple Silicon GPU (MPS)
-- **CPU threads:** 10
+- **Epochs:** 18  
+- **Loss function:** CrossEntropyLoss  
+- **Optimizer:** Adam, lr=0.0001  
+- **Device:** Apple Silicon GPU (MPS)  
+- **CPU threads:** 10  
+
 
 ---
 
 ## Training Loss
 | Epoch | Loss |
-|------:|------:|
+|------:|-----:|
 | 1 | 0.6577 |
 | 2 | 0.5887 |
 | 3 | 0.5478 |
@@ -160,11 +135,22 @@ The network consists of **four convolutional blocks**:
 | 6 | 0.4775 |
 | 7 | 0.4557 |
 | 8 | 0.4376 |
+| 9 | 0.3945 |
+| 10 | 0.3958 |
+| 11 | 0.3752 |
+| 12 | 0.3464 |
+| 13 | 0.3454 |
+| 14 | 0.3254 |
+| 15 | 0.2913 |
+| 16 | 0.2775 |
+| 17 | 0.2697 |
+| 18 | 0.2667 |
 
 ---
 
 ## Performance
-- **Test Accuracy:** **78.44%**
+- **Test Accuracy:** 83.67%  
+- **Validation Accuracy:** 84.78%  
 
 
 ---
